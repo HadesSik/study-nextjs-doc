@@ -1,12 +1,18 @@
-import styles from './layout.module.css';
-import utilStyles from '../styles/utils.module.css';
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from 'next/head'
+import styles from './layout.module.css'
+import utilStyles from '../styles/utils.module.css'
+import Link from 'next/link'
 
-export const name = 'Lisiver';
-export const siteTitle = 'Next.js Sample Website';
+const name = '[Your Name]'
+export const siteTitle = 'Next.js Sample Website'
 
-function Layout({ children, home }) {
+export default function Layout({
+                                 children,
+                                 home
+                               }: {
+  children: React.ReactNode
+  home?: boolean
+}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,7 +25,7 @@ function Layout({ children, home }) {
           property="og:image"
           content={`https://og-image.now.sh/${encodeURI(
             siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
+          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +46,7 @@ function Layout({ children, home }) {
               <a>
                 <img
                   src="/images/profile.jpg"
-                  className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
                 />
               </a>
@@ -53,7 +59,7 @@ function Layout({ children, home }) {
           </>
         )}
       </header>
-      <mail>{children}</mail>
+      <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
@@ -62,7 +68,5 @@ function Layout({ children, home }) {
         </div>
       )}
     </div>
-  );
-};
-
-export default Layout;
+  )
+}
